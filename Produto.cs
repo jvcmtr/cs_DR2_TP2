@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Joao_Ramos_DR2_TP2
 {
     internal class Produto
     {
-        private string _nome;
         public string nome { get; set; }
 
         private int _preco;

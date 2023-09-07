@@ -1,16 +1,19 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Joao_Ramos_DR2_TP2;
-using System.Data;
 
-
-Screens currentScreen = Screens.main;
-Screens lastScreen = Screens.exit;
-
-Produto produtoEmFoco = new Produto("abacate", 23.00m);
-List<Produto> produtos = new List<Produto>();
 
 const string returnCommand = "ESC";
 const int tableWidth = 20;
+const string PersistancePath = "./Data.json";
+
+Screens currentScreen = Screens.main;
+Screens lastScreen = Screens.exit;
+Produto produtoEmFoco = new Produto("abacate", 23.00m);
+
+List<Produto> produtos = Repos.Load(PersistancePath);
+if (produtos == null)
+    produtos = new List<Produto>();
+
 
 while(currentScreen != Screens.exit)
 {
@@ -42,6 +45,8 @@ while(currentScreen != Screens.exit)
 		default:
 			break;
 	}
+
+    Repos.Save(produtos, PersistancePath);
 }
 
 void search()
