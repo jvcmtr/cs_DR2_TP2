@@ -10,7 +10,6 @@ namespace Joao_Ramos_DR2_TP2
     internal class Table
     {
         private int columnWidth;
-        private int lineWidth;
         private ConsoleColor bg;
         private ConsoleColor fg;
         private string[] nextLine;
@@ -99,7 +98,7 @@ namespace Joao_Ramos_DR2_TP2
                     Console.Write(" ");
                 }
 
-                else if (i == entry.Length - 1)
+                if (i == entry.Length - 1)
                 {
                     if(isHeader) Console.Write("  ");
                     else Console.Write(" ║ ");
