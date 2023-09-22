@@ -6,19 +6,18 @@ namespace Joao_Ramos_DR2_TP2
     {
         public static List<Produto> Load(string path)
         {
+            string p = Path.GetFullPath($"./{path}");
+
             try
             {
-                string text = File.ReadAllText(path);
+                string text = File.ReadAllText(p);
                 return JsonSerializer.Deserialize<List<Produto>>(text);
             }
             catch(FileNotFoundException) {
-                var stream = File.Create(path);
-                string text = File.ReadAllText($"{stream.Name}");
-                return JsonSerializer.Deserialize<List<Produto>>(text);
-            }
-            catch (JsonException) {
-                File.WriteAllText(path, "[]");
-                return new List<Produto>();
+                var stream = File.Create(p.ToString());
+                stream.Close();
+
+                return JsonSerializer.Deserialize<List<Produto>>("[]");
             }
         }
 
